@@ -12,7 +12,6 @@ namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
-        Parser s;
         public Form1()
         {
             InitializeComponent();
@@ -20,14 +19,23 @@ namespace WinFormsApp1
 
         private void GetText_Click(object sender, EventArgs e)
         {
-            var s = new Parser();
             listWord.Items.Clear();
-            var listStatistic = s.sendPostRequest(link.Text);
-            foreach (var word in listStatistic)
+            if (!String.IsNullOrEmpty(link.Text))
             {
-                var row = new string[] { word.Key, word.Value.ToString() };
+                var listStatistic = Parser.sendPostRequest("http://" + link.Text.Replace("http://", "").Replace("https://", ""));
+                foreach (var word in listStatistic)
+                {
+                    var row = new string[] { word.Key, word.Value.ToString() };
+                    var lvi = new ListViewItem(row);
+                    lvi.Tag = word;
+                    listWord.Items.Add(lvi);
+                }
+            } 
+            else 
+            {
+                var row = new string[] { "Поле не должно быть пустым, введите URL", "0" };
                 var lvi = new ListViewItem(row);
-                lvi.Tag = word;
+                lvi.Tag = "Ошибка";
                 listWord.Items.Add(lvi);
             }
         }
