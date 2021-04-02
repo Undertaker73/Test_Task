@@ -9,6 +9,11 @@ namespace WinFormsApp1
 {
     public class Parser
     {
+        /// <summary>
+        /// Получить статистику повторяемости слов на сайте
+        /// </summary>
+        /// <param name="url">Адрес сайта</param>
+        /// <returns></returns>
         public static Dictionary<string,int> sendPostRequest(string url)
         {
             var result = new Dictionary<string, int>();
@@ -36,7 +41,11 @@ namespace WinFormsApp1
                 return result;
             }
         }
-
+        /// <summary>
+        /// Получить статистику по словам в тексте
+        /// </summary>
+        /// <param name="text">текст для анализа</param>
+        /// <returns></returns>
         public static Dictionary<string, int> countWords(string text)
         {
             var result = new Dictionary<string, int>();

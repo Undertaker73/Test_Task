@@ -20,24 +20,29 @@ namespace WinFormsApp1
         private void GetText_Click(object sender, EventArgs e)
         {
             listWord.Items.Clear();
-            if (!String.IsNullOrEmpty(link.Text))
+            label2.Text = "Идет анализ текста c сайта...";
+            if (!String.IsNullOrEmpty(link.Text.Trim()))
             {
                 var listStatistic = Parser.sendPostRequest("http://" + link.Text.Replace("http://", "").Replace("https://", ""));
+                label2.Text = (listStatistic.FirstOrDefault().Value != 0) ? "Статистика встречаемости слов на сайте:" : "Произошла ошибка :";
                 foreach (var word in listStatistic)
                 {
-                    var row = new string[] { word.Key, word.Value.ToString() };
-                    var lvi = new ListViewItem(row);
-                    lvi.Tag = word;
-                    listWord.Items.Add(lvi);
+                    AddItem(word.Key, word.Value.ToString(), word.Key);
                 }
             } 
             else 
             {
-                var row = new string[] { "Поле не должно быть пустым, введите URL", "0" };
-                var lvi = new ListViewItem(row);
-                lvi.Tag = "Ошибка";
-                listWord.Items.Add(lvi);
+                label2.Text = "Произошла ошибка :";
+                AddItem("Поле не должно быть пустым, введите URL", "0", "Ошибка");
             }
+        }
+
+        private void AddItem(string word, string periodicity, string tag)
+        {
+            var row = new string[] { word, periodicity };
+            var lvi = new ListViewItem(row);
+            lvi.Tag = tag;
+            listWord.Items.Add(lvi);
         }
     }
 }

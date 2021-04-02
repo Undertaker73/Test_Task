@@ -31,10 +31,11 @@ namespace WinFormsApp1
         {
             this.GetText = new System.Windows.Forms.Button();
             this.listWord = new System.Windows.Forms.ListView();
-            this.link = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Word = new System.Windows.Forms.ColumnHeader();
             this.Periodicity = new System.Windows.Forms.ColumnHeader();
+            this.link = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // GetText
@@ -54,12 +55,22 @@ namespace WinFormsApp1
             this.Word,
             this.Periodicity});
             this.listWord.HideSelection = false;
-            this.listWord.Location = new System.Drawing.Point(19, 42);
+            this.listWord.Location = new System.Drawing.Point(19, 66);
             this.listWord.Name = "listWord";
-            this.listWord.Size = new System.Drawing.Size(551, 377);
+            this.listWord.Size = new System.Drawing.Size(551, 353);
             this.listWord.TabIndex = 1;
             this.listWord.UseCompatibleStateImageBehavior = false;
             this.listWord.View = System.Windows.Forms.View.Details;
+            // 
+            // Word
+            // 
+            this.Word.Text = "Слово";
+            this.Word.Width = 350;
+            // 
+            // Periodicity
+            // 
+            this.Periodicity.Text = "Повторяемость";
+            this.Periodicity.Width = 200;
             // 
             // link
             // 
@@ -80,21 +91,21 @@ namespace WinFormsApp1
             this.label1.TabIndex = 3;
             this.label1.Text = "http://";
             // 
-            // Word
+            // label2
             // 
-            this.Word.Text = "Слово";
-            this.Word.Width = 350;
-            // 
-            // Periodicity
-            // 
-            this.Periodicity.Text = "Повторяемость";
-            this.Periodicity.Width = 200;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(235, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Статистика встречаемости слов на сайте:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 437);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.link);
             this.Controls.Add(this.listWord);
@@ -116,6 +127,7 @@ namespace WinFormsApp1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader Word;
         private System.Windows.Forms.ColumnHeader Periodicity;
+        private System.Windows.Forms.Label label2;
     }
 }
 
