@@ -29,38 +29,38 @@ namespace WinFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.GetText = new System.Windows.Forms.Button();
-            this.listWord = new System.Windows.Forms.ListView();
+            this.gettextbutton = new System.Windows.Forms.Button();
+            this.statisticslistword = new System.Windows.Forms.ListView();
             this.Word = new System.Windows.Forms.ColumnHeader();
             this.Periodicity = new System.Windows.Forms.ColumnHeader();
-            this.link = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.urltextbox = new System.Windows.Forms.TextBox();
+            this.urllabel = new System.Windows.Forms.Label();
+            this.infolabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // GetText
+            // gettextbutton
             // 
-            this.GetText.Location = new System.Drawing.Point(470, 12);
-            this.GetText.Name = "GetText";
-            this.GetText.Size = new System.Drawing.Size(100, 24);
-            this.GetText.TabIndex = 0;
-            this.GetText.Text = "Получи слова";
-            this.GetText.UseVisualStyleBackColor = true;
-            this.GetText.Click += new System.EventHandler(this.GetText_Click);
+            this.gettextbutton.Location = new System.Drawing.Point(470, 12);
+            this.gettextbutton.Name = "gettextbutton";
+            this.gettextbutton.Size = new System.Drawing.Size(100, 24);
+            this.gettextbutton.TabIndex = 0;
+            this.gettextbutton.Text = "Получи слова";
+            this.gettextbutton.UseVisualStyleBackColor = true;
+            this.gettextbutton.Click += new System.EventHandler(this.GetTextClick);
             // 
-            // listWord
+            // statisticslistword
             // 
-            this.listWord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listWord.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.statisticslistword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.statisticslistword.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Word,
             this.Periodicity});
-            this.listWord.HideSelection = false;
-            this.listWord.Location = new System.Drawing.Point(19, 66);
-            this.listWord.Name = "listWord";
-            this.listWord.Size = new System.Drawing.Size(551, 353);
-            this.listWord.TabIndex = 1;
-            this.listWord.UseCompatibleStateImageBehavior = false;
-            this.listWord.View = System.Windows.Forms.View.Details;
+            this.statisticslistword.HideSelection = false;
+            this.statisticslistword.Location = new System.Drawing.Point(19, 66);
+            this.statisticslistword.Name = "statisticslistword";
+            this.statisticslistword.Size = new System.Drawing.Size(551, 353);
+            this.statisticslistword.TabIndex = 1;
+            this.statisticslistword.UseCompatibleStateImageBehavior = false;
+            this.statisticslistword.View = System.Windows.Forms.View.Details;
             // 
             // Word
             // 
@@ -72,44 +72,44 @@ namespace WinFormsApp1
             this.Periodicity.Text = "Повторяемость";
             this.Periodicity.Width = 200;
             // 
-            // link
+            // urltextbox
             // 
-            this.link.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.urltextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.link.Location = new System.Drawing.Point(61, 12);
-            this.link.Name = "link";
-            this.link.Size = new System.Drawing.Size(403, 23);
-            this.link.TabIndex = 2;
+            this.urltextbox.Location = new System.Drawing.Point(61, 12);
+            this.urltextbox.Name = "urltextbox";
+            this.urltextbox.Size = new System.Drawing.Size(403, 23);
+            this.urltextbox.TabIndex = 2;
             // 
-            // label1
+            // urllabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "http://";
+            this.urllabel.AutoSize = true;
+            this.urllabel.Location = new System.Drawing.Point(19, 15);
+            this.urllabel.Name = "urllabel";
+            this.urllabel.Size = new System.Drawing.Size(34, 15);
+            this.urllabel.TabIndex = 3;
+            this.urllabel.Text = "URL :";
             // 
-            // label2
+            // infolabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(235, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Статистика встречаемости слов на сайте:";
+            this.infolabel.AutoSize = true;
+            this.infolabel.Location = new System.Drawing.Point(19, 45);
+            this.infolabel.Name = "infolabel";
+            this.infolabel.Size = new System.Drawing.Size(235, 15);
+            this.infolabel.TabIndex = 4;
+            this.infolabel.Text = "Статистика встречаемости слов на сайте:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 437);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.link);
-            this.Controls.Add(this.listWord);
-            this.Controls.Add(this.GetText);
+            this.Controls.Add(this.infolabel);
+            this.Controls.Add(this.urllabel);
+            this.Controls.Add(this.urltextbox);
+            this.Controls.Add(this.statisticslistword);
+            this.Controls.Add(this.gettextbutton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -121,13 +121,13 @@ namespace WinFormsApp1
 
         #endregion
 
-        private System.Windows.Forms.Button GetText;
-        private System.Windows.Forms.ListView listWord;
-        private System.Windows.Forms.TextBox link;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button gettextbutton;
+        private System.Windows.Forms.ListView statisticslistword;
+        private System.Windows.Forms.TextBox urltextbox;
+        private System.Windows.Forms.Label urllabel;
         private System.Windows.Forms.ColumnHeader Word;
         private System.Windows.Forms.ColumnHeader Periodicity;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label infolabel;
     }
 }
 

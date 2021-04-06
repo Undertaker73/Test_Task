@@ -12,29 +12,42 @@ namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
+        string[] statusmessages =
+        {
+         "Идет анализ текста c сайта...",
+         "Некорректный формат URL",
+         "Пожалуйста введите URL, поле не должно быть пустым",
+         "Статистика встречаемости слов на сайте:",
+         "C указанного URL не удалось получить слова"
+        };
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void GetText_Click(object sender, EventArgs e)
+        private void GetTextClick(object sender, EventArgs e)
         {
-            listWord.Items.Clear();
-            label2.Text = "Идет анализ текста c сайта...";
-            if (!String.IsNullOrEmpty(link.Text.Trim()))
+            statisticslistword.Items.Clear();
+            infolabel.Text = statusmessages[0];
+            if (!String.IsNullOrEmpty(urltextbox.Text.Trim()))
             {
-                var listStatistic = Parser.sendPostRequest("http://" + link.Text.Replace("http://", "").Replace("https://", ""));
-                label2.Text = (listStatistic.FirstOrDefault().Value != 0) ? "Статистика встречаемости слов на сайте:" : "Произошла ошибка :";
+                if (!Uri.IsWellFormedUriString(urltextbox.Text.Trim(), UriKind.RelativeOrAbsolute))
+                {
+                    infolabel.Text = statusmessages[1];
+                    return;
+                }
+                SimpleParser parser = new SimpleParser();
+                WebCrawler webpage = new WebCrawler();
+                string pagetext = webpage.GetText(urltextbox.Text.Trim());
+                Dictionary<string, int> listStatistic = parser.CountWords(pagetext);
+                infolabel.Text = (listStatistic.Count() != 0) ? statusmessages[3] : statusmessages[4];
                 foreach (var word in listStatistic)
                 {
                     AddItem(word.Key, word.Value.ToString(), word.Key);
                 }
+                return;
             } 
-            else 
-            {
-                label2.Text = "Произошла ошибка :";
-                AddItem("Поле не должно быть пустым, введите URL", "0", "Ошибка");
-            }
+            infolabel.Text = statusmessages[2];
         }
 
         private void AddItem(string word, string periodicity, string tag)
@@ -42,7 +55,7 @@ namespace WinFormsApp1
             var row = new string[] { word, periodicity };
             var lvi = new ListViewItem(row);
             lvi.Tag = tag;
-            listWord.Items.Add(lvi);
+            statisticslistword.Items.Add(lvi);
         }
     }
 }

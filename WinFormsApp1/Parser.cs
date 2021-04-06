@@ -7,51 +7,20 @@ using HtmlAgilityPack;
 
 namespace WinFormsApp1
 {
-    public class Parser
+    public class SimpleParser : IParser
     {
-        /// <summary>
-        /// Получить статистику повторяемости слов на сайте
-        /// </summary>
-        /// <param name="url">Адрес сайта</param>
-        /// <returns></returns>
-        public static Dictionary<string,int> sendPostRequest(string url)
-        {
-            var result = new Dictionary<string, int>();
-            try
-            {
-                System.Net.WebClient wc = new System.Net.WebClient();
-                byte[] raw = wc.DownloadData(url);
-                string webData = System.Text.Encoding.UTF8.GetString(raw);
-
-                var pageDoc = new HtmlDocument();
-                pageDoc.LoadHtml(webData);
-                var pageText = pageDoc.DocumentNode.InnerText;
-
-                if (!String.IsNullOrEmpty(pageText))
-                {
-                    return countWords(pageText);
-                }
-                result.Add("Текст на странице отсутствует", 0);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.Add("Не удалось получить текст с сайта", 0);
-                Logger.LogException(ex.Message);
-                return result;
-            }
-        }
+        public char[] separators { get; set;} = { ' ', ',', '.', '!', '?', '"', ';', ':', '[', ']', '(', ')', '\n', '\r', '\t' };
         /// <summary>
         /// Получить статистику по словам в тексте
         /// </summary>
         /// <param name="text">текст для анализа</param>
         /// <returns></returns>
-        public static Dictionary<string, int> countWords(string text)
+        public Dictionary<string, int> CountWords(String text)
         {
             var result = new Dictionary<string, int>();
-            try 
+            if (!String.IsNullOrEmpty(text.Trim()))
             {
-                var words = text.Split(' ', ',', '.', '!', '?', '"', ';', ':', '[', ']', '(', ')', '\n', '\r', '\t').Where(q => !string.IsNullOrEmpty(q));
+                var words = text.Split(separators).Where(q => !string.IsNullOrEmpty(q));
                 var uniqWrds = words.Select(q => q.ToLower().Trim()).Distinct();
                 foreach (var word in uniqWrds)
                 {
@@ -60,12 +29,7 @@ namespace WinFormsApp1
                 result = result.OrderByDescending(q => q.Value).ToArray().ToDictionary(key => key.Key, value => value.Value);
                 return result;
             }
-            catch (Exception ex)
-            {
-                result.Add("Не удалось выделить слова", 0);
-                Logger.LogException(ex.Message);
-                return result;
-            }
+            return result;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace WinFormsApp1
 {
     class Logger
     {
-        public static void LogException (string msg)
+        public void LogError (string msg)
         {
             using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "\\log.txt", true))
             {
